@@ -53,4 +53,14 @@ public class ArtistService {
     public void suprArtist(Long id){
         artistRepository.deleteById(id);
     }
+
+    public <T extends Artist> T modifArtist(Long id, T employe) {
+        if(!artistRepository.existsById(id)) {
+            throw new EntityNotFoundException("L'employé d'identifiant " + id + " n'existe pas !");
+        }
+        if(!id.equals(employe.getId())) {
+            throw new IllegalArgumentException("Requête invalide");
+        }
+        return artistRepository.save(employe);
+    }
 }

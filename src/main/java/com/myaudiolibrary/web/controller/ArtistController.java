@@ -45,4 +45,10 @@ public class ArtistController {
     public void delArtist(@PathVariable("id") Long id) throws ArtistException {
         this.artistService.suprArtist(id);
     }
+
+    //modification d'un artist
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public Artist modifArtist(@PathVariable("id") Long id, @RequestBody Artist employe){
+        return this.artistService.modifArtist(id,employe);
+    }
 }
