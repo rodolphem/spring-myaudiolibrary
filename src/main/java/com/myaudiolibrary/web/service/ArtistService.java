@@ -39,4 +39,14 @@ public class ArtistService {
 
         return allArtist;
     }
+
+    //creer un artist
+    public Artist creerArtist(Artist a) {
+        return artistRepository.save(a);
+    }
+
+    //supprimer un Artist
+    public void suprArtist(Long id){
+        artistRepository.deleteById(id);
+    }
 }
