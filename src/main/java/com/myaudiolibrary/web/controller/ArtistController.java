@@ -51,4 +51,11 @@ public class ArtistController {
     public Artist modifArtist(@PathVariable("id") Long id, @RequestBody Artist employe){
         return this.artistService.modifArtist(id,employe);
     }
+
+    //recherche par nom
+    @RequestMapping(value="/artists/{name}", method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public Artist findByName(@PathVariable(value="name") String name){
+        Artist a = artistService.GetName(name);
+        return a;
+    }
 }

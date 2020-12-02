@@ -54,6 +54,7 @@ public class ArtistService {
         artistRepository.deleteById(id);
     }
 
+    //modfier l'artist
     public <T extends Artist> T modifArtist(Long id, T employe) {
         if(!artistRepository.existsById(id)) {
             throw new EntityNotFoundException("L'employé d'identifiant " + id + " n'existe pas !");
@@ -62,5 +63,13 @@ public class ArtistService {
             throw new IllegalArgumentException("Requête invalide");
         }
         return artistRepository.save(employe);
+    }
+
+    public Artist GetName(@PathVariable(value="name") String name) {
+        Optional<Artist> artist = artistRepository.findByName(name);
+        if(artist.isEmpty()){
+            throw new EntityNotFoundException("L'artist '" + name + "n'existe pas");
+        }
+        return artist.get();
     }
 }
