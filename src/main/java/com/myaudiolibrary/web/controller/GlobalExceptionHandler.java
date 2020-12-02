@@ -15,10 +15,17 @@ import javax.persistence.EntityNotFoundException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //Pour erreur 404
+    //erreur 404
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleEntityNotFoundException(EntityNotFoundException e) {
+        return e.getMessage();
+    }
+
+    //erreur 409
+    @ExceptionHandler(EntityExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String handleEntityExistsException(EntityExistsException e){
         return e.getMessage();
     }
 }

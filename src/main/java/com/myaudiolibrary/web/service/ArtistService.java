@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
@@ -42,6 +43,9 @@ public class ArtistService {
 
     //creer un artist
     public Artist creerArtist(Artist a) {
+        if(artistRepository.existsByName(a.getName())){
+            throw new EntityExistsException("Cette artist existe déjà, nom de l'artist : " + a.getName());
+        }
         return artistRepository.save(a);
     }
 
