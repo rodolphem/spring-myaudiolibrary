@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface ArtistService {
     List<Artist> getAllArtists();
+    void saveArtist(Artist artist);
 }

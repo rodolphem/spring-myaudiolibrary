@@ -18,4 +18,9 @@ public class ArtistServiceImpl implements ArtistService{
         return artistRepository.findAll();
     }
 
+    @Override
+    public void saveArtist(Artist artist) {
+        this.artistRepository.save(artist);
+    }
+
 }
