@@ -9,4 +9,6 @@ import java.util.List;
 public interface ArtistService {
     List<Artist> getAllArtists();
     void saveArtist(Artist artist);
+    Artist getArtistById(long id);
+    void deleteArtistById(long id);
 }
