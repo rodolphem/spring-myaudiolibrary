@@ -33,6 +33,33 @@
                 </tr>
             </tbody>
         </table>
+
+        <div th:if = "${totalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage != 1}" th:href="@{'/page/' + ${currentPage - 1}}">Before</a>
+                    <span th:unless="${currentPage != 1}">Before</span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:href="@{'/page/1'}">First</a>
+                </div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 
 </body>

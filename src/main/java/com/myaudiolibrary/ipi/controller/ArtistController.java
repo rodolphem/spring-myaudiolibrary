@@ -2,11 +2,15 @@ package com.myaudiolibrary.ipi.controller;
 
 import com.myaudiolibrary.ipi.model.Artist;
 import com.myaudiolibrary.ipi.service.ArtistService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class ArtistController {
@@ -14,11 +18,10 @@ public class ArtistController {
     @Autowired
     private ArtistService artistService;
 
-    //liste des Artists
+    //liste des Artists paginée
     @GetMapping("/")
     public String viewHomePage(Model model){
-        model.addAttribute("listArtists", artistService.getAllArtists());
-        return "index";
+       return findPaginated(1, model);
     }
 
     //affiche la page de création d'un artiste
@@ -45,9 +48,27 @@ public class ArtistController {
         return "update_artist";
     }
 
+    //supression
     @GetMapping("/deleteArtist/{id}")
     public String deleteArtist(@PathVariable (value = "id") long id){
         this.artistService.deleteArtistById(id);
         return "redirect:/";
+    }
+
+    //pagination
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable (value = "pageNo")int pageNo, Model model){
+        int pageSize = 5;
+
+        Page<Artist> page = artistService.findPaginated(pageNo, pageSize);
+        List<Artist> listArtists = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listArtists", listArtists);
+
+        return "index";
+
     }
 }

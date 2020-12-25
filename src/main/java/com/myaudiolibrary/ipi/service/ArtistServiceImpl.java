@@ -3,6 +3,9 @@ package com.myaudiolibrary.ipi.service;
 import com.myaudiolibrary.ipi.model.Artist;
 import com.myaudiolibrary.ipi.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,9 +42,17 @@ public class ArtistServiceImpl implements ArtistService{
         return artist;
     }
 
+    //suppression artiste
     @Override
     public void deleteArtistById(long id) {
         this.artistRepository.deleteById(id);
+    }
+
+    //pagination
+    @Override
+    public Page<Artist> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.artistRepository.findAll(pageable);
     }
 
 }
