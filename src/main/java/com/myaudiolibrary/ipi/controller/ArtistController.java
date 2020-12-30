@@ -68,9 +68,12 @@ public class ArtistController {
         Page<Artist> page = artistService.findPaginated(pageNo, pageSize);
         List<Artist> listArtists = page.getContent();
 
+        Artist art = new Artist();
 
         Artist artist = new Artist();
+
         model.addAttribute("artist", artist);
+        model.addAttribute("art", art);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -95,11 +98,12 @@ public class ArtistController {
         return "detail_art";
     }
 
-    @PostMapping("/artists")
-    public String findByName(@ModelAttribute("artist") Artist artist, Model model){
-        String name = new String();
-        artistService.saveArtist(artist);
-        model.addAttribute("name", name);
+    @PostMapping("/findByName")
+    public String findByName(@ModelAttribute("art") Artist art, Model model){
+
+        String name = art.getName();
+        ArrayList<Artist> artistList = artistService.findByName(name);
+        model.addAttribute("artistList", artistList);
 
         return "artists";
     }

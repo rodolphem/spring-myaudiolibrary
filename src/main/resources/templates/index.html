@@ -14,14 +14,22 @@
     <div class = "container my-2">
         <h1> Artists List</h1>
 
-        <form action="#" th:action="@{/saveArtist}" th:object="${artist}" method="POST">
-            <input type="text" th:field = "*{name}" placeholder="Nom de l'artiste" class="form-control mb-4 col-4">
+        <div>
+            <h2>Ajouter un artiste</h2>
+            <form action="#" th:action="@{/saveArtist}" th:object="${artist}" method="POST">
+                <input type="text" th:field = "*{name}" placeholder="Nom de l'artiste" class="form-control mb-4 col-4">
 
-            <button type="submit" class="btn btn-info col-2">Enregistrer l'artiste</button>
-        </form>
+                <button type="submit" class="btn btn-info col-2">Enregistrer l'artiste</button>
+            </form>
+        </div>
 
-        <div  style="text-align: right">
-            <a th:href = "@{/showNewArtistForm}" class="btn btn-primary btn-sm mb-3">Ajouter un Artiste</a>
+        <div>
+            <h2>Rechercher un artiste</h2>
+            <form action="#" th:action="@{/findByName}" th:object="${art}" method="POST">
+                <input type="text" th:field = "*{name}" placeholder="Nom de l'artiste" class="form-control mb-4 col-4">
+
+                <button type="submit" class="btn btn-info col-2">Enregistrer l'artiste</button>
+            </form>
         </div>
 
         <table border="1" class = "table table-striped table-responsive-md">
