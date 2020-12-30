@@ -24,7 +24,9 @@
 
         <tr th:each="album : ${artist.albums}">
             <td th:text="${album.title}"></td>
-            <td><a th:href="@{/delAlbum/{id}(id=${album.id})}" class="btn btn-danger">Supprimer</a></td>
+            <td><a th:href="@{/delAlbum/{id}(id=${album.id})}" class="btn btn-danger">Supprimer</a>
+                <a th:href="@{/showAlbumUpdate/{id}(id=${album.id})}" class="btn btn-primary">Modification</a>
+            </td>
         </tr>
         </tbody>
     </table>
