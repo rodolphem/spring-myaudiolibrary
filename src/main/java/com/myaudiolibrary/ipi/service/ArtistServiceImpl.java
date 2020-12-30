@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +55,12 @@ public class ArtistServiceImpl implements ArtistService{
     public Page<Artist> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return this.artistRepository.findAll(pageable);
+    }
+
+    @Override
+    public ArrayList<Artist> findByName(@RequestParam(value="name") String name) {
+        ArrayList<Artist> listArtists = artistRepository.findByNameContainsIgnoreCase(name);
+        return listArtists;
     }
 
 }

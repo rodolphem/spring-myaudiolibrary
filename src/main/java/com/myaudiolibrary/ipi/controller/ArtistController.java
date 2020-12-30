@@ -10,8 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -61,10 +63,14 @@ public class ArtistController {
     //pagination
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo")int pageNo, Model model){
-        int pageSize = 5;
+        int pageSize = 10;
 
         Page<Artist> page = artistService.findPaginated(pageNo, pageSize);
         List<Artist> listArtists = page.getContent();
+
+
+        Artist artist = new Artist();
+        model.addAttribute("artist", artist);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -89,4 +95,12 @@ public class ArtistController {
         return "detail_art";
     }
 
+    @PostMapping("/artists")
+    public String findByName(@ModelAttribute("artist") Artist artist, Model model){
+        String name = new String();
+        artistService.saveArtist(artist);
+        model.addAttribute("name", name);
+
+        return "artists";
+    }
 }
