@@ -17,12 +17,14 @@
         <thead>
         <tr>
             <th><h2 th:text="${artist.name}"></h2> </th>
+            <th><p> Modification</p></th>
         </tr>
         </thead>
         <tbody>
 
         <tr th:each="album : ${artist.albums}">
             <td th:text="${album.title}"></td>
+            <td><a th:href="@{/delAlbum/{id}(id=${album.id})}" class="btn btn-danger">Supprimer</a></td>
         </tr>
         </tbody>
     </table>
