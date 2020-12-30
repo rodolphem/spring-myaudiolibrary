@@ -29,6 +29,7 @@
                     <td th:text="${artist.name}"></td>
                     <td> <a th:href="@{/showFormForUpdate/{id}(id=${artist.id})}" class="btn btn-primary">Modification</a>
                         <a th:href="@{/deleteArtist/{id}(id=${artist.id})}" class="btn btn-danger">Supprimer</a>
+                        <a th:href="@{/artist/{id}(id=${artist.id})}" class="btn btn-primary">Albums</a>
                     </td>
                 </tr>
             </tbody>

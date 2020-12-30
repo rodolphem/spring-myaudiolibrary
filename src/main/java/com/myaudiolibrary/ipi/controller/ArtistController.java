@@ -1,6 +1,8 @@
 package com.myaudiolibrary.ipi.controller;
 
+import com.myaudiolibrary.ipi.model.Album;
 import com.myaudiolibrary.ipi.model.Artist;
+import com.myaudiolibrary.ipi.service.AlbumService;
 import com.myaudiolibrary.ipi.service.ArtistService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ArtistController {
@@ -71,4 +74,19 @@ public class ArtistController {
         return "index";
 
     }
+
+    //Détail artist, albums
+    @GetMapping("/artist/{id}")
+    public String showAlbums(@PathVariable (value = "id") long id, Model model){
+
+        Artist artist = artistService.getArtistById(id);
+        Album album = new Album();
+        album.setArtist(artist);
+
+        model.addAttribute("album", album);
+        model.addAttribute("artist", artist);
+
+        return "detail_art";
+    }
+
 }
