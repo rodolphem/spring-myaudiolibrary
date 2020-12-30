@@ -1,6 +1,7 @@
-package com.myaudiolibrary.web.exception;
+package com.myaudiolibrary.ipi.exception;
 
-import com.myaudiolibrary.web.model.Artist;
+
+import com.myaudiolibrary.ipi.model.Artist;
 
 public class ArtistException extends Throwable {
     public static final String ID = "L'identifiant ne correspond pas à celui de l'artist";

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Détails de l'artiste</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class = "container my-2">
+    <h1> Albums List</h1>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th><h2 th:text="${artist.name}"></h2> </th>
+            <th><p> Modification</p></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="album : ${artist.albums}">
+            <td th:text="${album.title}"></td>
+            <td><a th:href="@{/delAlbum/{id}(id=${album.id})}" class="btn btn-danger">Supprimer</a>
+                <a th:href="@{/showAlbumUpdate/{id}(id=${album.id})}" class="btn btn-primary">Modification</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Ajout d'un album</h2>
+
+    <form action="#" th:action="@{/saveAlbum}" th:object="${album}" method="POST">
+        <input type="hidden" th:field="*{artist}" />
+        <input type="text" th:field = "*{title}" placeholder="titre album" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Enregistrer album</button>
+    </form>
+
+    <a th:href = "@{/}">Retourner à la liste des artistes</a>
+</div>
+</body>
+</html>

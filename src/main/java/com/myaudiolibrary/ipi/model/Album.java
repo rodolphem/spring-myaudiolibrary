@@ -1,6 +1,7 @@
-package com.myaudiolibrary.web.model;
+package com.myaudiolibrary.ipi.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Album {
@@ -45,4 +46,6 @@ public class Album {
     //CONSTRUCTEUR
     public Album() {
     }
+
+
 }

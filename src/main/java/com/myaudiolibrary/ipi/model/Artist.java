@@ -1,9 +1,10 @@
-package com.myaudiolibrary.web.model;
+package com.myaudiolibrary.ipi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -49,4 +50,5 @@ public class Artist {
     public void setAlbums(Set<Album> albums) {
         this.albums = albums;
     }
+
 }

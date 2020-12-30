@@ -1,10 +1,10 @@
-package com.myaudiolibrary.web;
+package com.myaudiolibrary.ipi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebApplicationTests {
+class IpiApplicationTests {
 
 	@Test
 	void contextLoads() {

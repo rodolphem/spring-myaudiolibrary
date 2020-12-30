@@ -1,13 +1,13 @@
-package com.myaudiolibrary.web.repository;
+package com.myaudiolibrary.ipi.repository;
 
-import com.myaudiolibrary.web.model.Artist;
+import com.myaudiolibrary.ipi.model.Artist;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
-    boolean existsByName(String aName);
-    Optional<Artist> findByName(String aName);
+    ArrayList<Artist> findByNameContainsIgnoreCase(String name);
 }
